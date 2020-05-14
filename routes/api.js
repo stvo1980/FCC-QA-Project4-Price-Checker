@@ -16,11 +16,12 @@ const fetch = require("node-fetch");
 module.exports = function (app) {
 
   app.route('/api/stock-prices')
-    .get(function (req, res){
+    .get(async function (req, res){
       const {stock, like} = req.query;
- const fetchResponce = fetch("")    
-    
+ const fetchResponce = await fetch("https://repeated-alpaca.glitch.me/v1/stock/GOOG/quote")    
+  const respData = await fetchResponce.json();  
     //  console.log(req.params);
+    res.json(respData)
     });
     
 };
