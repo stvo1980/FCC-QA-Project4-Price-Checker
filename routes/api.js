@@ -32,14 +32,14 @@ module.exports = function (app) {
     .get(async function (req, res){
       const {stock, like} = req.query;
     const fetchResponce = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
-  const {symbol , latestPrice} = await fetchResponce.json(); 
-    
+  const {symbol , latestPrice, open} = await fetchResponce.json(); 
+
     
 //  const googStock = await getStock('goog')
-  console.log("stock", stock)
-    console.log("fetchResponce + symbol",symbol)
+//  console.log("stock", stock)
+    console.log("fetchResponce")
    
-//    res.json(googStock)
+    res.json({stock:stock, price:latestPrice, open:open})
     });
     
 };
