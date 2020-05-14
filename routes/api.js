@@ -59,11 +59,26 @@ module.exports = function (app) {
     if(stockOne.stock!=db[0].stock){console.log("not equal")}
     else console.log('equal')
     stockDB= {stockData:stockOne.stock};
+  
     
-    for(var i=0;i<db.length; i++){
+    
       if(stockOne.stock=db[i].stock) {i++
        } else  db.push(stockOne);
-    }
+    
+    db.forEach(function (arrayItem) {
+    
+    var x = arrayItem.stock;
+    
+    if (x!=stockOne.stock){
+      console.log("som");
+      db.push(stockOne);
+    } 
+    
+});
+    
+    
+    
+    
     
   //  db.push(stockOne);
     console.log("db", db)
