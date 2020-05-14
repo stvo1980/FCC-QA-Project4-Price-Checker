@@ -17,7 +17,7 @@ const fetch = require("node-fetch");
 
 
 var stockDB = {};
-var db = [{stock:"",price:0}] 
+var db = [{stock:"test",price:0}] 
 async function getStock(stock){
   var fetchResponceFunc = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
   var {symbol, latestPrice} = await fetchResponceFunc.json(); 
@@ -35,7 +35,7 @@ module.exports = function (app) {
 //    const fetchResponce = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
   
   var stockOne = await getStock(stock);
-    stockOne = {...stockOne, like:0}
+    stockOne = {...stockOne, likes:0}
     var stockTwo = await getStock(stock[0]);
     stockTwo = {...stockTwo}
     var stockThree = await getStock(stock[1])
@@ -49,13 +49,19 @@ module.exports = function (app) {
     if(like){
       stockOne = {...stockOne, likes:1}
     
-    console.log("cond stock", stockOne)
+    console.log("cond stock", stockOne.stock)
+      console.log("db stock", db[0].stock)
        } else {
          stockOne = {...stockOne, likes:0}}
-    stockDB= {stockData:stockOne};
+    
+    console.log("cond stock", stockOne.stock)
+      console.log("db stock", db[0].stock)
+    if(stockOne.stock!=db[0].stock){console.log("not equal")}
+    else console.log('equal')
+    stockDB= {stockData:stockOne.stock};
     
     for(var i=0;i<db.length; i++){
-      if(db[i].symbol != stockOne.symbol) {
+      if(db[i].stock != stockOne.stock) {
         db.push(stockOne);}
     }
     
@@ -68,10 +74,10 @@ module.exports = function (app) {
  //   console.log('stock2', stockTwo)
     
     for(var i = 0; i<db.length; i++){
-  if(db[i].symbol == stockTwo.symbol){
+  if(db[i].stock == stockTwo.stock){
      stockTwo = {...db[i]}
   } else if(
-    db[i].symbol == stockThree.symbol
+    db[i].stock == stockThree.stock
   ) { 
     
     stockThree = {...db[i]}
