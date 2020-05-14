@@ -35,12 +35,12 @@ module.exports = function (app) {
   
     
   //  const {symbol , latestPrice, open,close} = await fetchResponce.json(); 
-    const symbol = await fetchResponce.json(); 
+    const stockData = await fetchResponce.json(); 
 
     
 //  const googStock = await getStock('goog')
 //  console.log("stock", stock)
-    console.log("fetchResponce",symbol)
+    console.log("fetchResponce",stockData)
    
   //  res.json({stock:stock, price:latestPrice, open:open, close:close})
     });
