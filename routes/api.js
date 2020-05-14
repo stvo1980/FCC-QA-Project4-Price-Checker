@@ -47,7 +47,7 @@ module.exports = function (app) {
       const {stock, like} = req.query;
 //    const fetchResponce = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
   var stockFirst = await getStock(stock);
-    
+    var stockSecond = await getStock(stock[0])
     
     
     console.log("stockFirst getStock",stockFirst);
