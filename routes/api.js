@@ -30,12 +30,12 @@ const stockDB = {};
 
 async function getStock(stock){
   var fetchResponceFunc = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
-  var stockDataFunc = await fetchResponceFunc.json(); 
+  var {symbol, latestPrice} = await fetchResponceFunc.json(); 
 //  stockDataFunc = stockDataFunc.map(item=>{return{
  //   symbol:item.symbol,
  //   price:item.latestPrice
 //  }})
-  return stockDataFunc;
+  return {symbol, price:latestPrice };
   
 }
 
@@ -50,7 +50,7 @@ module.exports = function (app) {
     
     
     
-    console.log("stockFirst",stockFirst);
+    console.log("stockFirst getStock",stockFirst);
     
   //  const {symbol , latestPrice, open,close} = await fetchResponce.json(); 
 //    var stockData = await fetchResponce.json(); 
