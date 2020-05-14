@@ -62,8 +62,8 @@ module.exports = function (app) {
   
     
     
-      if(stockOne.stock=db[i].stock) {i++
-       } else  db.push(stockOne);
+//      if(stockOne.stock=db[i].stock) {i++
+ //      } else  db.push(stockOne);
     
     db.forEach(function (arrayItem) {
     
