@@ -33,19 +33,28 @@ module.exports = function (app) {
     .get(async function (req, res){
       const {stock, like} = req.query;
 //    const fetchResponce = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
+  
   var stockOne = await getStock(stock);
-    var stockTwo = await getStock(stock[0]);
-    var stockThree = await getStock(stock[1])
     
+    var stockTwo = await getStock(stock[0]);
+    stockTwo = {...stockTwo, like:0}
+    var stockThree = await getStock(stock[1])
+    stockThree = {...stockThree, like:0}
     var combineArr = arr.concat(stockTwo,stockThree)
     
-  
+  console.log("like", like)
  //   console.log(typeof stock)
   if(typeof stock === "string") {
 //    res.json({symbol:stockData.symbol, price:stockData.latestPrice})
-    stockDB= {stockData:stockOne};
+    if(like){
+      stockOne = {...stockOne, like:1}
+    
     console.log("cond stock", stockOne)
-  res.send(stockDB)
+  } else
+    {stockOne = {...stockOne, like:1}}
+    stockDB= {stockData:stockOne};
+    res.send(stockDB)
+    
   } else { 
     stockDB= {stockData:combineArr};
      
