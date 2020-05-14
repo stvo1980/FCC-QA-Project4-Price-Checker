@@ -40,7 +40,7 @@ module.exports = function (app) {
     stockTwo = {...stockTwo, like:0}
     var stockThree = await getStock(stock[1])
     stockThree = {...stockThree, like:0}
-    var combineArr = arr.concat(stockTwo,stockThree)
+   
     
   console.log("like", like)
  //   console.log(typeof stock)
@@ -50,12 +50,13 @@ module.exports = function (app) {
       stockOne = {...stockOne, like:1}
     
     console.log("cond stock", stockOne)
-  } else
-    {stockOne = {...stockOne, like:1}}
+       } else {
+         stockOne = {...stockOne, like:0}}
     stockDB= {stockData:stockOne};
     res.send(stockDB)
     
   } else { 
+     var combineArr = arr.concat(stockTwo,stockThree)
     stockDB= {stockData:combineArr};
      
      
