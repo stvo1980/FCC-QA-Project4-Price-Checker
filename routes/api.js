@@ -47,10 +47,13 @@ module.exports = function (app) {
       const {stock, like} = req.query;
 //    const fetchResponce = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
   var stockFirst = await getStock(stock);
-    var stockSecond = await getStock(stock[0])
+    var stockSecond = await getStock(stock[0]);
+    var stockThird = await getStock(stock[1])
     
     
     console.log("stockFirst getStock",stockFirst);
+    console.log("stock2 getStock",stockSecond);
+    console.log("stock2",stockThird);
     
   //  const {symbol , latestPrice, open,close} = await fetchResponce.json(); 
 //    var stockData = await fetchResponce.json(); 
