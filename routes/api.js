@@ -39,10 +39,16 @@ module.exports = function (app) {
 
     
 //  const googStock = await getStock('goog')
-//  console.log("stock", stock)
-    console.log("fetchResponce",stockData)
+  console.log("stock", stock)
+//    console.log("fetchResponce",stockData)
    
-//    res.json(stockData)
-    });
+    res.json({symbol:stockData.symbol, price:stockData.latestPrice})
+   
+  
+  
+  
+  
+  
+  });
     
 };
