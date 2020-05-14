@@ -28,17 +28,26 @@ async function getStock(stock){
 
 const stockDB = {};
 
+async function getStock(stock){
+  var fetchResponceFunc = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
+  var stockDataFunc = await fetchResponceFunc.json(); 
+  
+  return stockDataFunc;
+  
+}
+
 
 module.exports = function (app) {
 
   app.route('/api/stock-prices')
     .get(async function (req, res){
       const {stock, like} = req.query;
-    const fetchResponce = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
-  
+//    const fetchResponce = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
+  var stockFirst = getStock(stock);
+    console.log("stockFirst",stockFirst);
     
   //  const {symbol , latestPrice, open,close} = await fetchResponce.json(); 
-    var stockData = await fetchResponce.json(); 
+//    var stockData = await fetchResponce.json(); 
 
  //  stockDB= {...stockData};
  //   console.log("DB", stockDB);
@@ -46,8 +55,10 @@ module.exports = function (app) {
 //  const googStock = await getStock('goog')
  //   console.log(typeof stock)
   if(typeof stock === "string") {
-    console.log("cond stock", stock)
-  } else console.log("stock cond 2", stock[0])
+    res.json({symbol:stockData.symbol, price:stockData.latestPrice})
+//    console.log("cond stock", stock)
+  } else 
+ //   console.log("stock cond 2", stock[0])
  //   console.log("stock cond 2", stock[0])
 //    console.log("fetchResponce",stockData)
    
