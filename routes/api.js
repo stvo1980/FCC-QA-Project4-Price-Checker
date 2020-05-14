@@ -42,7 +42,7 @@ module.exports = function (app) {
 //  console.log("stock", stock)
     console.log("fetchResponce",stockData)
    
-  //  res.json({stock:stock, price:latestPrice, open:open, close:close})
+//    res.json(stockData)
     });
     
 };
