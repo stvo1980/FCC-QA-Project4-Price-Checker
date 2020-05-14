@@ -17,7 +17,7 @@ const fetch = require("node-fetch");
 
 
 var stockDB = {};
-var db = [] 
+var db = [{symbol:"",price:0}] 
 async function getStock(stock){
   var fetchResponceFunc = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
   var {symbol, latestPrice} = await fetchResponceFunc.json(); 
@@ -55,12 +55,12 @@ module.exports = function (app) {
     stockDB= {stockData:stockOne};
     
     for(var i=0;i<db.length; i++){
-      if(db[i].symbol != stockOne.symbol) {
+      if(db[i].symbol || db[i].symbol != stockOne.symbol) {
         db.push(stockOne);}
     }
     
   //  db.push(stockOne);
-  //  console.log("db", db)
+    console.log("db", db[1].symbol)
     res.send(stockDB)
     
   } else { 
@@ -78,6 +78,7 @@ module.exports = function (app) {
   }
 }
  console.log("stockTwo.like",stockTwo)
+    console.log("db", db) 
     
     var countLike = stockTwo.like - stockThree.like;
     var countLikeTwo = stockThree.like - stockTwo.like;
