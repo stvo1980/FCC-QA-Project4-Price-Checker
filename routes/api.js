@@ -47,15 +47,19 @@ module.exports = function (app) {
   if(typeof stock === "string") {
 //    res.json({symbol:stockData.symbol, price:stockData.latestPrice})
     if(like){
-      stockOne = {...stockOne, like:1}
+      stockOne = {...stockOne, likes:1}
     
   //  console.log("cond stock", stockOne)
        } else {
-         stockOne = {...stockOne, like:0}}
+         stockOne = {...stockOne, likes:0}}
     stockDB= {stockData:stockOne};
     
+    for(var i=0;i<db.length; i++){
+      if(db[i].symbol != stockOne.symbol) {
+        db.push(stockOne);}
+    }
     
-    db.push(stockOne);
+  //  db.push(stockOne);
     console.log("db", db)
     res.send(stockDB)
     
@@ -65,12 +69,13 @@ module.exports = function (app) {
     
     for(var i = 0; i<db.length; i++){
   if(db[i].symbol == stockTwo.symbol){
-     stockTwo = {...db[i]}
+     stockTwo = {...db[i],jello:0}
   } else if(
     db[i].symbol == stockThree.symbol
   ) { 
     
-    stockThree = {...db[i]}}
+    stockThree = {...db[i], jello:0}
+  }
 }
     
     
