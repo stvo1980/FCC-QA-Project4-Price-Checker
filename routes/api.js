@@ -17,7 +17,7 @@ const fetch = require("node-fetch");
 
 
 var stockDB = {};
-var arr = [] 
+var db = [] 
 async function getStock(stock){
   var fetchResponceFunc = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
   var {symbol, latestPrice} = await fetchResponceFunc.json(); 
@@ -37,9 +37,9 @@ module.exports = function (app) {
   var stockOne = await getStock(stock);
     stockOne = {...stockOne, like:0}
     var stockTwo = await getStock(stock[0]);
-    stockTwo = {...stockTwo, rel_likes:0}
+    stockTwo = {...stockTwo}
     var stockThree = await getStock(stock[1])
-    stockThree = {...stockThree, rel_likes:0}
+    stockThree = {...stockThree}
    
     
   console.log("like", like)
@@ -49,18 +49,39 @@ module.exports = function (app) {
     if(like){
       stockOne = {...stockOne, like:1}
     
-    console.log("cond stock", stockOne)
+  //  console.log("cond stock", stockOne)
        } else {
          stockOne = {...stockOne, like:0}}
     stockDB= {stockData:stockOne};
+    
+    
+    db.push(stockOne);
+    console.log("db", db)
     res.send(stockDB)
     
   } else { 
-     var combineArr = arr.concat(stockTwo,stockThree)
+   
+ //   console.log('stock2', stockTwo)
+    
+    for(var i = 0; i<db.length; i++){
+  if(db[i].symbol == stockTwo.symbol){
+     stockTwo = {...db[i]}
+  } else if(
+    db[i].symbol == stockThree.symbol
+  ) { 
+    
+    stockThree = {...db[i]}}
+}
+    
+    
+    
+    
+    
+    var combineArr = db.concat(stockTwo,stockThree)
     stockDB= {stockData:combineArr};
      
      
-     console.log("stockDB",stockDB)
+  //   console.log("stockDB",stockDB)
     res.send(stockDB)}
  
    
