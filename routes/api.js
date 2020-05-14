@@ -30,7 +30,7 @@ module.exports = function (app) {
     .get(async function (req, res){
       const {stock, like} = req.query;
   const googStock = await getStock('goog')
-    //  console.log(req.params);
+   
     res.json(googStock)
     });
     
