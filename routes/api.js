@@ -60,7 +60,7 @@ module.exports = function (app) {
     }
     
   //  db.push(stockOne);
-    console.log("db", db)
+  //  console.log("db", db)
     res.send(stockDB)
     
   } else { 
@@ -69,15 +69,21 @@ module.exports = function (app) {
     
     for(var i = 0; i<db.length; i++){
   if(db[i].symbol == stockTwo.symbol){
-     stockTwo = {...db[i],jello:0}
+     stockTwo = {...db[i]}
   } else if(
     db[i].symbol == stockThree.symbol
   ) { 
     
-    stockThree = {...db[i], jello:0}
+    stockThree = {...db[i]}
   }
 }
+ console.log("stockTwo.like",stockTwo)
     
+    var countLike = stockTwo.like - stockThree.like;
+    var countLikeTwo = stockThree.like - stockTwo.like;
+    console.log("countLike",countLike)
+    stockTwo = {...stockTwo, rel_likes:countLike}
+    stockThree = {...stockThree,rel_likes:countLikeTwo }
     
     
     
