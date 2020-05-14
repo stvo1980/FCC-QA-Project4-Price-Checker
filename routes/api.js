@@ -35,11 +35,11 @@ module.exports = function (app) {
 //    const fetchResponce = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
   
   var stockOne = await getStock(stock);
-    
+    stockOne = {...stockOne, like:0}
     var stockTwo = await getStock(stock[0]);
-    stockTwo = {...stockTwo, like:0}
+    stockTwo = {...stockTwo, rel_likes:0}
     var stockThree = await getStock(stock[1])
-    stockThree = {...stockThree, like:0}
+    stockThree = {...stockThree, rel_likes:0}
    
     
   console.log("like", like)
