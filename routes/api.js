@@ -41,11 +41,15 @@ module.exports = function (app) {
     var stockData = await fetchResponce.json(); 
 
  //  stockDB= {...stockData};
-    console.log("DB", stockDB);
+ //   console.log("DB", stockDB);
     
 //  const googStock = await getStock('goog')
-  console.log("stock", stock)
-    console.log("fetchResponce",stockData)
+ //   console.log(typeof stock)
+  if(typeof stock === "string") {
+    console.log("cond stock", stock)
+  } else console.log("stock cond 2", stock[0])
+ //   console.log("stock cond 2", stock[0])
+//    console.log("fetchResponce",stockData)
    
     res.json({symbol:stockData.symbol, price:stockData.latestPrice})
    
