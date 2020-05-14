@@ -35,7 +35,7 @@ async function getStock(stock){
  //   symbol:item.symbol,
  //   price:item.latestPrice
 //  }})
-  return {symbol, price:latestPrice };
+  return {stock:symbol, price:latestPrice };
   
 }
 
@@ -52,26 +52,19 @@ module.exports = function (app) {
     
     var combineArr = arr.concat(stockTwo,stockThree)
     
-  //  console.log("stockFirst getStock",stockOne);
- //   console.log("stock2 getStock",stockTwo);
- //   console.log("stock2",stockThree);
-    
-    stockDB= {stockData:combineArr};
-    console.log("stockDB",stockDB);
-  //  const {symbol , latestPrice, open,close} = await fetchResponce.json(); 
-//    var stockData = await fetchResponce.json(); 
-
- //  stockDB= {...stockData};
- //   console.log("DB", stockDB);
-    
-//  const googStock = await getStock('goog')
- //   console.log(typeof stock)
+  
+    console.log(typeof stock)
   if(typeof stock === "string") {
 //    res.json({symbol:stockData.symbol, price:stockData.latestPrice})
-//    
+    stockDB= {stockData:stockOne};
     console.log("cond stock", stockOne)
-  } else 
-    console.log("stockDB",stockDB)
+  res.send(stockDB)
+  } else { 
+    stockDB= {stockData:combineArr};
+     
+     
+     console.log("stockDB",stockDB)
+    res.send(stockDB)}
  //   console.log("stock cond 2", stock[0])
 //    console.log("fetchResponce",stockData)
    
