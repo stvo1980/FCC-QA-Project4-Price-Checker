@@ -26,6 +26,9 @@ async function getStock(stock){
 } 
 */
 
+const stockDB = {};
+
+
 module.exports = function (app) {
 
   app.route('/api/stock-prices')
@@ -35,12 +38,14 @@ module.exports = function (app) {
   
     
   //  const {symbol , latestPrice, open,close} = await fetchResponce.json(); 
-    const stockData = await fetchResponce.json(); 
+    var stockData = await fetchResponce.json(); 
 
+ //  stockDB= {...stockData};
+    console.log("DB", stockDB);
     
 //  const googStock = await getStock('goog')
   console.log("stock", stock)
-//    console.log("fetchResponce",stockData)
+    console.log("fetchResponce",stockData)
    
     res.json({symbol:stockData.symbol, price:stockData.latestPrice})
    
