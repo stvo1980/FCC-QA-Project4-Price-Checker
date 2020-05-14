@@ -61,8 +61,8 @@ module.exports = function (app) {
     stockDB= {stockData:stockOne.stock};
     
     for(var i=0;i<db.length; i++){
-      if(db[i].stock != stockOne.stock) {
-        db.push(stockOne);}
+      if(stockOne.stock=db[i].stock) {i++
+       } else  db.push(stockOne);
     }
     
   //  db.push(stockOne);
