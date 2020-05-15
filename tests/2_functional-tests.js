@@ -13,6 +13,8 @@ var server = require('../server');
 
 chai.use(chaiHttp);
 
+
+
 suite('Functional Tests', function() {
     
     suite('GET /api/stock-prices => stockData object', function() {
@@ -112,14 +114,14 @@ suite('Functional Tests', function() {
    //       assert.property(res.body.stockData[1], 'stock');
     //      assert.property(res.body.stockData[1], 'price');
   //        assert.property(res.body.stockData[1], 'rel_likes');
-          assert.oneOf(res.body.stockData[0].stock, ['AMZN','GOOS']);
-          assert.oneOf(res.body.stockData[1].stock, ['AMZN','GOOS']);
+          assert.oneOf(res.body.stockData[0].stock, 'AMZN');
+          assert.oneOf(res.body.stockData[1].stock, 'GOOS']);
    //       assert.equal(res.body.stockData[0].rel_likes + res.body.stockData[1].rel_likes, 0);
          assert.equal(res.body.stockData[0].rel_likes,1);
          assert.equal(res.body.stockData[1].rel_likes,1);
  //         assert.equal(Math.abs(res.body.stockData[0].rel_likes),rel_likes);
           done();
-         done();
+ 
         });
            
            
