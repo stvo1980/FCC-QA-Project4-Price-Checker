@@ -89,9 +89,15 @@ if(dbFilter.indexOf(stockOne.stock)==-1){
  console.log("stockTwo",stockTwo)
     console.log("db", db) 
     
-
-    stockTwo = {...stockTwo, rel_likes:stockTwo.likes}
-    stockThree = {...stockThree,rel_likes:stockThree.likes }
+if(!like)
+  {  stockTwo = {...stockTwo, rel_likes:stockTwo.likes}
+    stockThree = {...stockThree,rel_likes:stockThree.likes }}
+    else {
+   stockTwo = {...stockTwo, rel_likes:1}
+    stockThree = {...stockThree,rel_likes:1}   
+      
+    }
+    
     
     console.log("stockTwoTest", stockTwo)
     let output=[]
@@ -100,7 +106,7 @@ if(dbFilter.indexOf(stockOne.stock)==-1){
     var mapCombineArr = combineArr.map(item=>{return{
   stock:item.stock,
   price:item.price,
-  rel_likes:item.likes
+  rel_likes:item.rel_likes
 }})
     
     console.log("combineArr",combineArr)
