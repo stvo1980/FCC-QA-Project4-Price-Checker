@@ -55,7 +55,7 @@ module.exports = function (app) {
          stockOne = {...stockOne, likes:0}}
     
     console.log("cond stockOne", stockOne)
-
+res.send({stockData:stockOne})
 
  let dbFilter = db.map(item => item.stock);
 
@@ -71,7 +71,7 @@ if(dbFilter.indexOf(stockOne.stock)==-1){
     
   //  db.push(stockOne);
     console.log("db", db)
-    res.send(stockDB)
+//    res.send(stockDB)
     
   } else { 
    
