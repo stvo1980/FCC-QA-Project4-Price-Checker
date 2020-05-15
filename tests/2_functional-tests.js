@@ -45,7 +45,7 @@ suite('Functional Tests', function() {
            assert.property(res.body.stockData, "likes");
           assert.property(res.body.stockData, "price");
          assert.property(res.body.stockData, "stock");
-           assert.property(res.body.stockData, "likes");
+//           assert.property(res.body.stockData, "likes");
          assert.equal(res.body.stockData.stock,"GOOG")
            assert.equal(res.body.stockData.likes, 1)
            
@@ -66,8 +66,13 @@ suite('Functional Tests', function() {
            assert.property(res.body.stockData, "likes");
           assert.property(res.body.stockData, "price");
          assert.property(res.body.stockData, "stock");
-           assert.property(res.body.stockData, "likes");
+             assert.property(res.body.stockData, "likes");
+          assert.property(res.body.stockData, "price");
+         assert.property(res.body.stockData, "stock");
+      
          assert.equal(res.body.stockData.stock,"GOOG")
+           assert.equal(res.body.stockData.likes, 1)
+           assert.equal(res.body.stockData.stock,"GOOG")
            assert.equal(res.body.stockData.likes, 1)
            
           //complete this one too
@@ -80,7 +85,22 @@ suite('Functional Tests', function() {
       });
       
       test('2 stocks', function(done) {
-        
+       chai.request(server)
+        .get('/api/stock-prices')
+        .query({stock: 'goog', like:true})
+        .end(function(err, res){
+         assert.equal(res.status, 200);
+           assert.property(res.body.stockData[0], "likes");
+          assert.property(res.body.stockData, "price");
+         assert.property(res.body.stockData, "stock");
+           assert.property(res.body.stockData, "likes");
+         assert.equal(res.body.stockData.stock,"GOOG")
+           assert.equal(res.body.stockData.likes, 1)
+           
+          //complete this one too
+          
+          done();
+        }); 
       });
       
       test('2 stocks with like', function(done) {
