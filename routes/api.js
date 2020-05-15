@@ -62,7 +62,12 @@ module.exports = function (app) {
 if(dbFilter.indexOf(stockOne.stock)==-1){
   db.push(stockOne)
 }
-   
+     for (var i in db) {
+     if (db[i].stock == stockOne.stock) {
+        db[i].likes = stockOne.likes;
+        break; //Stop this loop, we found it!
+     } 
+   }
     
   //  db.push(stockOne);
     console.log("db", db)
