@@ -17,19 +17,6 @@ app.use(cors({origin: '*'})); //For FCC testing purposes only
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const helmet = require('helmet')
-app.use(helmet())
-
-
-app.use(helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", 'trusted-cdn.com'],
-    }
-   }));
-
-
-
 
 //Index page (static HTML)
 app.route('/')
