@@ -14,6 +14,8 @@ var server = require("../server");
 chai.use(chaiHttp);
 
 suite("Functional Tests", function() {
+  this.timeout(0);
+
   suite("GET /api/stock-prices => stockData object", function() {
     test("1 stock", function(done) {
       chai
@@ -26,7 +28,6 @@ suite("Functional Tests", function() {
           assert.property(res.body.stockData, "price");
           assert.property(res.body.stockData, "stock");
           assert.equal(res.body.stockData.stock, "GOOG");
-          //complete this one too
 
           done();
         });
@@ -48,8 +49,6 @@ suite("Functional Tests", function() {
           assert.equal(res.body.stockData.stock, "GOOG");
           assert.equal(res.body.stockData.likes, 1);
 
-          //complete this one too
-
           done();
         });
     });
@@ -67,8 +66,6 @@ suite("Functional Tests", function() {
 
           assert.equal(res.body.stockData.stock, "GOOG");
           assert.equal(res.body.stockData.likes, 1);
-
-          //complete this one too
 
           done();
         });
@@ -93,11 +90,25 @@ suite("Functional Tests", function() {
         });
     });
 
-  /*  test("2 stocks with like", function(done) {
-      test("2 stocks", function(done) {
-        
-   
-      });
+    test("2 stocks with like", function(done) {
+      chai
+        .request(server)
+        .get("/api/stock-prices")
+        .query({ stock: ["amzn", "goos"], like: true })
+        .end(function(err, res) {
+          assert.equal(res.status, 200);
+          assert.property(res.body.stockData[0], "rel_likes");
+          assert.property(res.body.stockData[0], "price");
+          assert.property(res.body.stockData[0], "stock");
+          assert.property(res.body.stockData[1], "rel_likes");
+          assert.property(res.body.stockData[1], "price");
+          assert.property(res.body.stockData[1], "stock");
+          assert.equal(res.body.stockData[0].stock, "AMZN");
+          assert.equal(res.body.stockData[1].stock, "GOOS");
+          assert.equal(res.body.stockData[0].rel_likes, 1);
+          assert.equal(res.body.stockData[1].rel_likes, 1);
+          done();
+        });
     });
-*/  });
+  });
 });
