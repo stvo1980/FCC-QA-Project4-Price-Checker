@@ -96,16 +96,18 @@ if(dbFilter.indexOf(stockOne.stock)==-1){
     stockTwo = {...stockTwo, rel_likes:stockTwo.likes}
     stockThree = {...stockThree,rel_likes:stockThree.likes }
     
-    console.log("stockTwo")
+    console.log("stockTwoTest", stockTwo)
+    let output=[]
     
-    
-    var combineArr = db.concat(stockTwo,stockThree)
+    var combineArr = output.concat(stockTwo,stockThree)
+    console.log("combineArr",combineArr)
     stockDB= {stockData:combineArr};
      
      
-  //   console.log("stockDB",stockDB)
+     console.log("stockDB",stockDB)
   //  res.send(stockDB)
-    res.send("tst")
+    res.json({stockDb:stockDB[1]})
+
   }
  
    
