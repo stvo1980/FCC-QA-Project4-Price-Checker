@@ -37,7 +37,7 @@ module.exports = function(app) {
     var stockThree = await getStock(stock[1]);
     stockThree = { ...stockThree, likes: 0 };
 
-        //   console.log(typeof stock)
+    //   console.log(typeof stock)
     if (typeof stock === "string") {
       //    res.json({symbol:stockData.symbol, price:stockData.latestPrice})
       if (like) {
@@ -76,7 +76,7 @@ module.exports = function(app) {
         }
       }
       // console.log("stockTwo",stockTwo)
- //     console.log("db", db);
+      //     console.log("db", db);
 
       if (like) {
         stockTwo = { ...stockTwo, rel_likes: 1 };
@@ -98,10 +98,10 @@ module.exports = function(app) {
         };
       });
 
-//      console.log("combineArr", combineArr);
+      //      console.log("combineArr", combineArr);
       stockDB = { stockData: mapCombineArr };
 
-//      console.log("stockDB", stockDB);
+      //      console.log("stockDB", stockDB);
       res.send(stockDB);
     }
   });
