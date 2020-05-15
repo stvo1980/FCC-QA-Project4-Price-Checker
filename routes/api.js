@@ -49,12 +49,12 @@ module.exports = function (app) {
     if(like){
       stockOne = {...stockOne, likes:1}
     
-    console.log("cond stocklike", stockOne.likes)
+    console.log("cond stock", stockOne.likes)
    
        } else {
          stockOne = {...stockOne, likes:0}}
     
-    console.log("cond stockOne", stockOne.stock)
+    console.log("cond stockOne", stockOne)
 
 
  let dbFilter = db.map(item => item.stock);
