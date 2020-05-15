@@ -17,7 +17,7 @@ const fetch = require("node-fetch");
 
 
 var stockDB = {};
-var db = [{stock:"test",price:0}] 
+var db = [] 
 async function getStock(stock){
   var fetchResponceFunc = await fetch("https://repeated-alpaca.glitch.me/v1/stock/"+stock+"/quote")    
   var {symbol, latestPrice} = await fetchResponceFunc.json(); 
@@ -49,36 +49,20 @@ module.exports = function (app) {
     if(like){
       stockOne = {...stockOne, likes:1}
     
-    console.log("cond stock", stockOne.stock)
-      console.log("db stock", db[0].stock)
+    console.log("cond stocklike", stockOne.likes)
+   
        } else {
          stockOne = {...stockOne, likes:0}}
     
-    console.log("cond stock", stockOne.stock)
-      console.log("db stock", db[0].stock)
-    if(stockOne.stock!=db[0].stock){console.log("not equal")}
-    else console.log('equal')
-    stockDB= {stockData:stockOne.stock};
-  
-    
-    
-//      if(stockOne.stock=db[i].stock) {i++
- //      } else  db.push(stockOne);
-    
-    db.forEach(function (arrayItem) {
-    
-    var x = arrayItem.stock;
-    
-    if (x!=stockOne.stock){
-      console.log("som");
-      db.push(stockOne);
-    } 
-    
-});
-    
-    
-    
-    
+    console.log("cond stockOne", stockOne.stock)
+
+
+ let dbFilter = db.map(item => item.stock);
+
+if(dbFilter.indexOf(stockOne.stock)==-1){
+  db.push(stockOne)
+}
+   
     
   //  db.push(stockOne);
     console.log("db", db)
