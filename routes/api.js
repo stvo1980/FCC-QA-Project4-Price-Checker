@@ -42,7 +42,7 @@ module.exports = function (app) {
     stockThree = {...stockThree,likes:0}
    
     
- // console.log("like", like)
+ // console.log("likeTwo", like)
  //   console.log(typeof stock)
   if(typeof stock === "string") {
 //    res.json({symbol:stockData.symbol, price:stockData.latestPrice})
@@ -54,7 +54,7 @@ module.exports = function (app) {
        } else {
          stockOne = {...stockOne, likes:0}}
     
-    console.log("cond stockOne", stockOne)
+//    console.log("cond stockOne", stockOne)
 res.send({stockData:stockOne})
 
  let dbFilter = db.map(item => item.stock);
@@ -68,9 +68,8 @@ if(dbFilter.indexOf(stockOne.stock)==-1){
         break; //Stop this loop, we found it!
      } 
    }
-    
-  //  db.push(stockOne);
-    console.log("db", db)
+  
+   // console.log("db", db)
 //    res.send(stockDB)
     
   } else { 
@@ -90,23 +89,27 @@ if(dbFilter.indexOf(stockOne.stock)==-1){
  console.log("stockTwo",stockTwo)
     console.log("db", db) 
     
-    var countLike = stockTwo.like - stockThree.like;
-    var countLikeTwo = stockThree.like - stockTwo.like;
-    console.log("countLike",countLike)
+
     stockTwo = {...stockTwo, rel_likes:stockTwo.likes}
     stockThree = {...stockThree,rel_likes:stockThree.likes }
     
     console.log("stockTwoTest", stockTwo)
     let output=[]
+    console.log("likeTwo", like)
+    var combineArr = output.concat(stockTwo,stockThree);
+    var mapCombineArr = combineArr.map(item=>{return{
+  stock:item.stock,
+  price:item.price,
+  rel_likes:item.likes
+}})
     
-    var combineArr = output.concat(stockTwo,stockThree)
     console.log("combineArr",combineArr)
-    stockDB= {stockData:combineArr};
+    stockDB= {stockData:mapCombineArr};
      
      
      console.log("stockDB",stockDB)
-  //  res.send(stockDB)
-    res.json({stockDb:stockDB[1]})
+    res.send(stockDB)
+ 
 
   }
  
