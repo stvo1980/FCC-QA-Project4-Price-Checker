@@ -37,9 +37,9 @@ module.exports = function (app) {
   var stockOne = await getStock(stock);
     stockOne = {...stockOne, likes:0}
     var stockTwo = await getStock(stock[0]);
-    stockTwo = {...stockTwo}
+    stockTwo = {...stockTwo,likes:0}
     var stockThree = await getStock(stock[1])
-    stockThree = {...stockThree}
+    stockThree = {...stockThree,likes:0}
    
     
  // console.log("like", like)
@@ -87,16 +87,16 @@ if(dbFilter.indexOf(stockOne.stock)==-1){
     stockThree = {...db[i]}
   }
 }
- console.log("stockTwo.like",stockTwo)
+ console.log("stockTwo",stockTwo)
     console.log("db", db) 
     
     var countLike = stockTwo.like - stockThree.like;
     var countLikeTwo = stockThree.like - stockTwo.like;
     console.log("countLike",countLike)
-    stockTwo = {...stockTwo, rel_likes:countLike}
-    stockThree = {...stockThree,rel_likes:countLikeTwo }
+    stockTwo = {...stockTwo, rel_likes:stockTwo.likes}
+    stockThree = {...stockThree,rel_likes:stockThree.likes }
     
-    
+    console.log("stockTwo")
     
     
     var combineArr = db.concat(stockTwo,stockThree)
@@ -104,7 +104,9 @@ if(dbFilter.indexOf(stockOne.stock)==-1){
      
      
   //   console.log("stockDB",stockDB)
-    res.send(stockDB)}
+  //  res.send(stockDB)
+    res.send("tst")
+  }
  
    
 //    res.json({symbol:stockData.symbol, price:stockData.latestPrice})
